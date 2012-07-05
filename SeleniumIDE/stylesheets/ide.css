@@ -1,0 +1,237 @@
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ *
+ *  @author Kazuhiro Yamada (yamadakazu45@gmail.com)
+ */
+
+body {
+  font-size: 0.8em;
+}
+
+#scide {
+  background-color: #F6F6F6;
+  margin: 0 0 10px 0;
+  height: 700px;
+  width: 530px;
+  border: 1px solid #AAA;
+}
+
+#scide_title {
+  font-size: 1.4em;
+  color:#1D82C5;
+  background-color: #E2E6EB;
+  height: 25px;
+  padding: 5px 0 0 5px;
+  border-bottom: 1px solid #AAA;
+  vertical-align:top;
+}
+
+#scide_header {
+  background-color: #FFF;
+  padding:0 0 0 5px
+}
+
+#scide #command_box {
+  height:300px;
+  overflow-y: auto;
+}
+
+#scide table {
+  border-top: 1px solid #BDB76B;
+  border-spacing: 0px;
+  width: 100%;
+}
+
+#scide .input-row td{
+  border-bottom: 1px solid #AAA;
+}
+
+#scide td, th {
+  border-spacing: 0px;
+  vertical-align: middle;
+  padding: 4px 5px;
+}
+
+#scide #target select {
+  float: left;
+  width: 100px;
+}
+
+#scide #target input{
+  margin-left: 10px;
+  width: 300px;
+}
+
+#scide input[type="text"] {
+  width: 410px;
+}
+
+#scide span {
+  font-size: 90%;
+  font-weight: bold;  
+}
+
+#scide #command_box_header {
+  background-color: #FFF;
+}
+
+#scide #command_box_header th {
+  border-left: 1px solid #BDB76B;
+}
+
+#scide #command_box_header th:first-child {
+  border-left: 0px;
+}
+
+.shortSelectBox {
+  width: 230px;
+}
+
+.longSelectBox {
+  width: 98%;
+}
+
+#add_new_input {
+  text-align: center;
+}
+
+#refresh {
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#rec {
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#run {
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#save_ide_script {
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#invert_color {
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#export {
+  vertical-align: top;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#scide #input_list {
+  width: 100%;
+  border-top: 1px solid #BDB76B;
+}
+
+#scide #input_list .command{
+  width:100px;
+}
+
+#scide #input_list .target{
+  width:300px;
+}
+
+#scide #input_list .value{
+  width:100px;
+}
+
+#scide #input_list .delete{
+  width:20px;
+}
+
+.tDnD_whileDrag {
+  background-color: #CCC;
+}
+
+.testing-row {
+  background-color: lemonchiffon;
+}
+
+.test-passed-row {
+  background-color: honeyDew;
+}
+
+.test-failed-row {
+  background-color: lightpink;
+}
+
+#selected_row_data {
+  background-color: #C9C9C9;
+}
+
+.selected-row {
+  background-color: royalBlue;
+  color: white;
+}
+
+#err_msg {
+  color: red;
+}
+
+#log {
+  text-align: left;
+  background-color: white;
+  max-height: 230px;
+  overflow: auto;
+}
+
+#log tr {
+  height: 5px;
+}
+
+#log .log-error-row {
+  color: red;
+}
+
+#testcode {
+  font-size: 0.8em;
+  border: 1px solid #AAA;
+  background-color: white;
+}
+
+#menu {
+  width: 100%;
+  background:   #BDD2FF;
+}
+
+#test_cases {
+  border: 1px solid #AAA;
+  border-spacing: 0px;
+}
+
+#test_cases tr, #test_cases th, #test_cases td {
+  border: 1px solid #AAA;
+  border-spacing: 0px;
+}
+
+#test_cases td a{
+  color: blue;
+}

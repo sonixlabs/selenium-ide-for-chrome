@@ -1,0 +1,32 @@
+{
+  "name": "WebDriver IDE",
+  "version": "1.0",
+  "description": "This is the Chrome IDE to record your Selenium 2 tests",
+  "icons": {
+    "16": "images/selenium-ide-logo-16.png",
+    "32": "images/selenium-ide-logo-32.png",
+    "64": "images/selenium-ide-logo-64.png"
+  },
+  "browser_action": {
+    "default_icon": "images/selenium-ide-logo-32.png",
+    "default_title": "SciroccoIDE2"   // オプション: ツールチップとして表示
+  },
+  "background_page": "html/background.html",
+  "options_page": "html/options.html",
+  "permissions": [
+    "contextMenus", 
+    "tabs", 
+    "webRequest",
+    "webRequestBlocking",
+    "http://*/*", 
+    "https://*/*" , 
+    "tts"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["scripts/lib/jquery.min.js", "scripts/common/prototype_extension.js", "scripts/common/options.js", "scripts/common/utils.js"
+            ,"scripts/content_scripts/recorder.js", "scripts/content_scripts/test_runner.js", "scripts/content_scripts/content_script.js"]
+    }
+  ]
+}

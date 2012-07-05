@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Selenium IDE for Google Chrome</title>
+  <script type="text/javascript" charset="utf-8" src="../scripts/lib/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/lib/underscore.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/lib/backbone.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/lib/jquery.tablednd.js"></script><!-- table-row draggable -->
+  <script type="text/javascript" charset="utf-8" src="../scripts/lib/jquery-ui.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/lib/localstrage.js"></script><!-- localstrage wrapper -->
+  <script type="text/javascript" charset="utf-8" src="../scripts/lib/FileServer.js"></script><!-- file downloadable -->
+  <script type="text/javascript" charset="utf-8" src="../scripts/lib/superfish.js"></script><!-- dropdown menu -->
+  <script type="text/javascript" charset="utf-8" src="../scripts/common/prototype_extension.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/common/utils.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/ide/format/constants.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/ide/format/formatter_base.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/ide/format/java/web_driver_formatter.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/ide/format/java/android_driver_for_scirocco_cloud_formatter.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/ide/code_generator.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../scripts/ide/ide_view.js"></script>
+  <link rel="stylesheet" type="text/css" href="../stylesheets/ide.css" >
+  <link rel="stylesheet" type="text/css" href="../stylesheets/ui-lightness/jquery-ui.css" >
+  <link rel="stylesheet" type="text/css" href="../stylesheets/superfish/superfish.css" >
+  <link rel="stylesheet" type="text/css" href="../stylesheets/superfish/superfish-vertical.css" >
+  <link rel="stylesheet" type="text/css" href="../stylesheets/superfish/superfish-navbar.css" >
+  
+  
+  <script type="text/javascript">
+
+    function init() {
+      chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+        IDEViewInstance.addNewCommand(request.command, request.target, request.value);
+        sendResponse({})
+      });
+    }
+
+  </script>
+
+</head>
+<body onbeforeunload="save()" onload="init();">
+
+<div id="scide">
+  <ul id="menu" class="sf-menu">
+    <li class="current">
+      <a href="#">File</a>
+      <ul>
+        <li><a href="#" class="open-save-test-case-dialog">Save Test Case</a></li>
+        <li><a href="#" class="open-load-test-case-dialog">Load Test Case</a></li>
+        <li><a href="#" class="open-export-test-case-dialog">Export Test Case</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#a">Help</a>
+    </li>
+  </ul>
+
+  <div>
+    Base URL: <input id="base_url" type="text"></input>
+  </div>
+  <div id="scide_header">
+    <input id="rec"    class="img_button" title="Now Recording. Click to Stop Recording" type="image" src="/images/icons/rec.png" width="18px"/>
+    <input id="run"    class="img_button" title="run"        type="image" src="/images/icons/run.png" width="18px"/>
+    <!--<input id="export" class="img_button open-export-test-case-dialog" title="export"     type="image" src="/images/icons/export_code.png" width="22px"/>-->
+    <!--<input id="initialize_test" type="button" value="initialize_test" />-->
+    UserAgent: <select id="user_agent"></select>
+  </div>
+  <table id="command_box_header">
+    <tr>
+      <th width="90px">Command</th>
+      <th width="310px">Target</th>
+      <th width="120px">Value</th>
+    </tr>
+  </table>
+  <div id="command_box">
+    <table id="input_list">
+      <col class="command" />
+      <col class="target" />
+      <col class="value" />
+      <col class="delete" />
+      <tr>
+        <td id="add_new_input" colspan="4"><img src="/images/icons/plus.png"/> add command</td>
+      </tr>
+    </table>
+  </div>
+  <table id="selected_row_data">
+    <tr>
+      <td width="60">Command</td>
+      <td>
+        <select id="command" class="longSelectBox"></select>
+      </td>
+    </tr>
+    <tr>
+      <td>Target</td>
+      <td>
+        <span id="target">
+          <select id="target_type">
+            <option>cssSelector</option>
+            <option>xpath</option>
+            <option>linkText</option>
+          </select>
+          <input id="target_value" type="text" length="25"></input>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Value</td>
+      <td><input id="value" type="text" /></td>
+    </tr>
+  </table>
+
+  <!-- Log -->
+  <div id="log">
+    <table id="log_table">
+    </table>
+  </div>
+</div><!-- scide -->
+
+
+<div id="commands"></div>
+
+<div id="dialog_save_test_case" title="Save Test Case" style="display: none;">
+  <p>Test Case Name: <input type="text" id="test_case_name"></input></p>
+</div>
+
+<div id="dialog_load_test_case" title="Load Test Case" style="display: none;">
+  <table id="test_cases">
+    <thead align="center">
+      <tr>
+        <th width="150px">Name</th>
+        <th width="300px">BaseUrl</th>
+        <th width="50px"></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div id="dialog_export_test_case" title="Export Test Case" style="display: none;">
+  <p>Format : <select id="export_format"></select></p>
+  <p>Class Name : <input type="text" id="export_class_name" value="Test1" size="40"></input></p>
+  <p class="chrome-driver-format-only">Chrome Driver File Path: <input type="text" id="chrome_driver_file_path" value="" size="40"></input></p>
+  <p><pre id="testcode"></pre></p>
+</div>
+
+</body>
+</html>
