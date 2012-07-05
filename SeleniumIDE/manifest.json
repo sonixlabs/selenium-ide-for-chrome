@@ -1,7 +1,7 @@
 {
-  "name": "WebDriver IDE",
+  "name": "SeleniumIDE",
   "version": "1.0",
-  "description": "This is the Chrome IDE to record your Selenium 2 tests",
+  "description": "This is Selenium IDE for Google Chrome.",
   "icons": {
     "16": "images/selenium-ide-logo-16.png",
     "32": "images/selenium-ide-logo-32.png",
@@ -9,7 +9,7 @@
   },
   "browser_action": {
     "default_icon": "images/selenium-ide-logo-32.png",
-    "default_title": "SciroccoIDE2"   // オプション: ツールチップとして表示
+    "default_title": "SeleniumIDE"
   },
   "background_page": "html/background.html",
   "options_page": "html/options.html",
