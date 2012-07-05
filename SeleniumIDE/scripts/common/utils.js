@@ -32,7 +32,8 @@ Utils = {};
 Utils.getLocators = function(element) {
   var cssSelector = Utils.getCssLocator(element);
   var id = element.getAttribute("id") != undefined ? element.getAttribute("id") : null;
-  var linkText = element.nodeName.toLowerCase() == "a" ? $(element).text().trim() : null;
+  // To respond to if they contain a newline in <a> tags text.
+  var linkText = element.nodeName.toLowerCase() == "a" ? $(element).text().trim().split("\n")[0] : null;
   var name = element.getAttribute("name") != undefined ? element.getAttribute("name") : null;
   var xpath = Utils.getXPathLocator(element);
 
